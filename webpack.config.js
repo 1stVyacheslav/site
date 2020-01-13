@@ -1,55 +1,74 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin'),
 			MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-module.exports = {
-	mode: 'development',
+module.exports = (env = {}) =>{
 
-	module: {
-		rules: [
+	const { mode = "development" } = env;
 
-			//Loading scripts
-			{
-				test: /\.js$/,
-				exclude: /node_modules/,
-				loader: 'babel-loader'
-			},
+	const isProd = mode === 'production';
+	const isDev = mode === 'development';
 
-			//Loading CSS
-			{
-				test: /\.css$/,
-				use: [ MiniCssExtractPlugin.loader, 'css-loader' ]
-			},
-
-			//Loading images
-			{
-				test: /\.(png|jpe?g|gif|ico)$/,
-				use: [ {
-						loader: 'file-loader',
-						options: {
-							outputPath: 'images',
-							name: '[name]-[sha1:hash:7].[ext]'
-						}
-					} ]
-			}
-
+	function getStyleLoaders() {
+		return [
+			isProd ? MiniCssExtractPlugin.loader : 'style-loader',
+			'css-loader'
 		]
-	},
+	}
 
-	plugins: [
-		new HtmlWebpackPlugin( {
-			title: 'Landing page',			
-			template: 'public/index.html'
-		} ),
+	function getPlugins() {
+		let plugins = [
+			new HtmlWebpackPlugin( {
+				title: 'Landing page',			
+				template: 'public/index.html'
+			} )
+		];
 
-		new MiniCssExtractPlugin( {
-			filename: 'main-[hash:8].css'
-		})
-	],
+		if (isProd) {
+			plugins.push(
+				new MiniCssExtractPlugin( {
+					filename: 'main-[hash:8].css'
+				})
+			)
+		}
 
-	// devServer: {
-  //   contentBase: './src'
-	// },
-	
-	// devtool: 'inline-source-map',
+		return plugins
+	}
+
+	return {
+		mode: isProd ? 'production' : isDev && 'development',
+
+		module: {
+			rules: [
+
+				//Loading scripts
+				{
+					test: /\.js$/,
+					exclude: /node_modules/,
+					loader: 'babel-loader'
+				},
+
+				//Loading CSS
+				{
+					test: /\.css$/,
+					use: getStyleLoaders()
+				},
+
+				//Loading images
+				{
+					test: /\.(png|jpe?g|gif|ico)$/,
+					use: [ {
+							loader: 'file-loader',
+							options: {
+								outputPath: 'images',
+								name: '[name]-[sha1:hash:7].[ext]'
+							}
+						} ]
+				}
+
+			]
+		},
+
+		plugins: getPlugins()
+	}
 
 }

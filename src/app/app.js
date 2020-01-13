@@ -4,8 +4,8 @@ import './app.css';
 
 export default function App() {
 
-	const name = "Vyachrslav";
-	const hi = `Hello ${name}`;
+	const name = "Vyacheslav";
+	const hi = `Hey you, ${name}`;
 
 	return (
 		<div id='app'>{hi}</div>
