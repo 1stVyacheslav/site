@@ -9,16 +9,13 @@ module.exports = {
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
-				use: [ {loader: 'babel-loader'} ]
+				loader: 'babel-loader'
 			},
 
 			//Loading CSS
 			{
 				test: /\.css$/,
-				use: [ 
-					{loader: 'style-loader'}, 
-					{loader: 'css-loader'} 
-				]
+				use: [ 'style-loader', 'css-loader' ]
 			},
 
 			//Loading images
@@ -43,20 +40,4 @@ module.exports = {
 	
 	// devtool: 'inline-source-map',
 
-	// rules: [
-  //   {
-  //     test: /\.m?js$/,
-  //     exclude: /(node_modules)/,
-  //     use: {
-  //       loader: 'babel-loader',
-  //       options: {
-  //         presets: ['@babel/preset-env', '@babel/preset-react']
-  //       }
-  //     }
-	// 	},
-	// 	{
-	// 		test: /\.css$/,
-	// 		use: ['style-loader', 'css-loader']
-	// 	}
-  // ]
 }
