@@ -1,3 +1,5 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin'),
+			MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
 	mode: 'development',
@@ -15,7 +17,7 @@ module.exports = {
 			//Loading CSS
 			{
 				test: /\.css$/,
-				use: [ 'style-loader', 'css-loader' ]
+				use: [ MiniCssExtractPlugin.loader, 'css-loader' ]
 			},
 
 			//Loading images
@@ -31,11 +33,21 @@ module.exports = {
 			}
 
 		]
-	}
+	},
 
+	plugins: [
+		new HtmlWebpackPlugin( {
+			title: 'Landing page',			
+			template: 'public/index.html'
+		} ),
+
+		new MiniCssExtractPlugin( {
+			filename: 'main-[hash:8].css'
+		})
+	],
 
 	// devServer: {
-  //   contentBase: './dist'
+  //   contentBase: './src'
 	// },
 	
 	// devtool: 'inline-source-map',

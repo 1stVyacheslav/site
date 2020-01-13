@@ -4,7 +4,7 @@ import './app.css';
 
 export default function App() {
 
-	const name = "World";
+	const name = "Vyachrslav";
 	const hi = `Hello ${name}`;
 
 	return (
