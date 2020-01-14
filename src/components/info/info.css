@@ -1,0 +1,40 @@
+#info {
+	font-size: 0.9rem;
+	background: rgba(230, 230, 250, 0.2);
+	
+}
+
+.bio {
+	padding: auto auto;
+}
+
+.education a {
+	color: black;
+}
+
+.icon_html {
+	display: inline-block;
+	height: 45px;
+	width: 255px;	
+	background: url('./img/icon_group.png') no-repeat;
+	background-size: auto 100%;
+	padding: 0;
+}
+
+.icon_2 {
+	background-position-x: -260px;
+}
+
+.icon_3 {
+	background-position-x: -515px;
+	width: 115px;
+}
+
+.proff-skills, .bio {
+	border-right: solid 1px black;
+}
+
+.instruments {
+	border-top: solid 1px black;
+	padding: 0;
+}

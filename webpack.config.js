@@ -55,7 +55,7 @@ module.exports = (env = {}) =>{
 
 				//Loading images
 				{
-					test: /\.(png|jpe?g|gif|ico)$/,
+					test: /\.(png|jpe?g|gif|ico|mp4)$/,
 					use: [ {
 							loader: 'file-loader',
 							options: {

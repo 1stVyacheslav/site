@@ -1,13 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-const App = ( {name} ) => {
-	return ( 
-		<div>
-			<div className='hello'>Hello {name} !</div>			
-		</div>
-	)
-}
+import App from './components/app';
 
 ReactDOM.render( <App name="world" />, document.getElementById("root") )
 
