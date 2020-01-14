@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 
 import './projects.css';
 
 //import images
-import todo from '../../media/todo.jpg';
-import starDB from '../../media/star-DB.jpg';
-import reStore from '../../media/Re-store.jpg';
+import todo from './data/media/todo.jpg';
+import starDB from './data/media/star-DB.jpg';
+import reStore from './data/media/Re-store.jpg';
+
+import projectList from './data/project-list.js'
 
 export default function Projects() {
 
+	const [slideIndex, dispatch] = useReducer( (state, action) => {
+		switch (action.type) {
+			case 'INC':
+				return (state + 1) % projectList.length;
+			case 'DEC':
+				return (state - 1 + projectList.length) % projectList.length;
+			case 'SET':
+				return action.payload;
+			default:
+				return state
+		}
+	}, 0 )
 
 	return (
 		<div className='container text-center'>
