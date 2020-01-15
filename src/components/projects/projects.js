@@ -9,7 +9,7 @@ export default function Projects() {
 
 	return (
 		<div className='container text-center'>
-			<div id="carousel" className="carousel slide" data-ride="carousel">
+			<div id="carousel" className="carousel slide" data-ride="carousel" data-interval={false}>
 				
 				<ol className="carousel-indicators">
 
@@ -51,11 +51,15 @@ function ProjectItem( {item, isActive} ) {
 	return (
 		<div className={`carousel-item ${isActive && "active"}`}>
 			<img className="img-fluid" src={item.img} alt={item.title} />
+			<a href={item.git} className="carousel-caption" target='blank'>{item.description}</a>
 		</div>
 	)
 }
 
 function CarouselIndicator( {index} ) {
 
-	return <li data-target="#carousel" data-slide-to={index} className={`${(index===0) && "active"}`}></li>
+	return <li 	data-target="#carousel" 
+							data-slide-to={index}
+							className={`${(index===0) && "active"}`}
+					></li>
 }
