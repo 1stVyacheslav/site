@@ -54,7 +54,7 @@ function ProjectItem( {item, isActive} ) {
 			<div className="card">
 				<div className="row no-gutters">
 					<div className="col-md-4">
-						<img src={item.img} alt={item.title}/>
+						<img className='w-100' src={item.img} alt={item.title}/>
 					</div>
 					<div className="col-md-8">
 						<div className="card-body">

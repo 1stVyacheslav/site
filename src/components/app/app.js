@@ -4,7 +4,7 @@ import './app.css';
 
 import Info from '../info'
 import Projects from '../projects';
-import Comments from '../comments/comments';
+import Comments from '../comments';
 import Form from '../form';
 
 export default function App( {name} ) {
@@ -31,17 +31,17 @@ export default function App( {name} ) {
 			</div>
 
 			<div className="row m-4">
-				<h2 className='d-block text-center'>Форма:</h2>
-			</div>
-			<div className="row">
-				<Form />
-			</div>
-			
-			<div className="row m-4">
 				<h2 className='d-block text-center'>Комментарии:</h2>
 			</div>
 			<div className="row">
 				<Comments />
+			</div>
+
+			<div className="row m-4">
+				<h2 className='d-block text-center'>Форма:</h2>
+			</div>
+			<div className="row">
+				<Form />
 			</div>
 			
 		</div>
