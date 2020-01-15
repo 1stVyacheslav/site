@@ -1,49 +1,36 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 
 import './projects.css';
 
-//import images
-import todo from './data/media/todo.jpg';
-import starDB from './data/media/star-DB.jpg';
-import reStore from './data/media/Re-store.jpg';
-
+//import projects
 import projectList from './data/project-list.js'
 
 export default function Projects() {
-
-	const [slideIndex, dispatch] = useReducer( (state, action) => {
-		switch (action.type) {
-			case 'INC':
-				return (state + 1) % projectList.length;
-			case 'DEC':
-				return (state - 1 + projectList.length) % projectList.length;
-			case 'SET':
-				return action.payload;
-			default:
-				return state
-		}
-	}, 0 )
 
 	return (
 		<div className='container text-center'>
 			<div id="carousel" className="carousel slide" data-ride="carousel">
 				
 				<ol className="carousel-indicators">
-					<li data-target="#carousel" data-slide-to="0" className="active"></li>
-					<li data-target="#carousel" data-slide-to="1"></li>
-					<li data-target="#carousel" data-slide-to="2"></li>
+
+					{
+						projectList.map( (_, idx) => {
+
+							return <CarouselIndicator index={idx} key={idx} />
+						} )
+					}
+
 				</ol>
 				<div className="carousel-inner">
-					<div className="carousel-item active">
-						<img className="img-fluid" src={todo} alt="todo" />
-					</div>
-					<div className="carousel-item">
-						<img className="img-fluid" src={starDB} alt="star-db" />
-					</div>
-					<div className="carousel-item">
-						<img className="img-fluid" src={reStore} alt="re-store" />
-					</div>
-				</div>
+
+					{
+						projectList.map( (item, idx) => {
+
+							return <ProjectItem item={item} isActive={idx === 0} key={idx} />
+						} )
+					}
+
+				</div> 
 				
 				<a className="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
 					<span className="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -57,4 +44,18 @@ export default function Projects() {
 		</div>
 		
 	)
+}
+
+function ProjectItem( {item, isActive} ) {
+
+	return (
+		<div className={`carousel-item ${isActive && "active"}`}>
+			<img className="img-fluid" src={item.img} alt={item.title} />
+		</div>
+	)
+}
+
+function CarouselIndicator( {index} ) {
+
+	return <li data-target="#carousel" data-slide-to={index} className={`${(index===0) && "active"}`}></li>
 }
