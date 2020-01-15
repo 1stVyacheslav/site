@@ -6,21 +6,24 @@ import foto from './img/foto.png';
 
 export default function Info() {
 	return (
-	<section id='info' className='container text-center'>
-		<div className='row'>
-			<NameInfo />
-			<div className='col-sm'>
+		<section className='jumbotron' >
+			<div id='info' className='container text-center'>
 				<div className='row'>
-					<ProffSkillsInfo />
-					<EducationInfo />
+					<NameInfo />
+					<div className='col-sm'>
+						<div className='row'>
+							<ProffSkillsInfo />
+							<EducationInfo />
+						</div>
+						<div className='row'>
+							<InstrumentsInfo />
+						</div>
+						
+					</div>
 				</div>
-				<div className='row'>
-					<InstrumentsInfo />
-				</div>
-				
 			</div>
-		</div>
-	</section>
+		</section>
+	
 	)
 }
 
